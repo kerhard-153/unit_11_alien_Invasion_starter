@@ -1,6 +1,6 @@
 import sys
 import pygame
-
+from settings import Settings
 
 class AlienInvasion:
     """Manage game assets and behaviors"""
@@ -8,12 +8,19 @@ class AlienInvasion:
     def __init__(self):
         
         pygame.init()
+        self.settings = Settings()
 
-        self.screen = pygame.display.set_mode((1200, 800))
-        pygame.display.set_caption("Alien Invasion")
-        self.bg_color = (45, 50, 70)
+        self.screen = pygame.display.set_mode(
+            (self.settings.screen_w, self.settings.screen_h)
+            )
+        pygame.display.set_caption(self.settings.name)
+        self.bg = pygame.image.load(self.settings.bg_file)
+        self.bg = pygame.transform.scale(self.bg, 
+            (self.settings.screen_w, self.settings.screen_h)
+            )
 
         self.running = True
+        self.clock = pygame.time.Clock()
 
     def run_game(self):
         
@@ -24,8 +31,9 @@ class AlienInvasion:
                     pygame.quit()
                     sys.exit()
             
-            self.screen.fill(self.bg_color)
+            self.screen.blit(self.bg, (0, 0))
             pygame.display.flip()
+            self.clock.tick(self.settings.FPS)
 
 
 
