@@ -9,6 +9,7 @@ if TYPE_CHECKING:
 class AlienFleet:
    
     def __init__(self, game: 'AlienInvasion'):
+        
         self.game = game
         self.settings = game.settings
         self.fleet = pygame.sprite.Group()
@@ -66,6 +67,22 @@ class AlienFleet:
         new_alien = Alien(self, current_x, current_y)
 
         self.fleet.add(new_alien)
+
+    def check_fleet_edges(self):
+        alien: Alien
+        for alien in self.fleet:
+            if alien.check_edges():
+                self.drop_alien_fleet()
+                self.fleet_direction *= -1
+                break
+
+    def drop_alien_fleet(self):
+        for alien in self.fleet:
+            alien.y += self.fleet_drop_speed
+
+    def update_fleet(self):
+        self.check_fleet_edges()
+        self.fleet.update()
 
     def draw(self):
         alien: 'Alien'
