@@ -40,6 +40,7 @@ class Settings:
         self.ship_w = 64
         self.ship_h = 64
         self.ship_speed = 5
+        self.starting_ship_count = 3
 
         # self.bullet_file = Path.cwd() / 'Assets' / 'images' / 'green_laser2.png'
         # self.bullet_file_pink = Path.cwd() / 'Assets' / 'images' / 'pink_laser.png'
