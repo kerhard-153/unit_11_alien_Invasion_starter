@@ -51,12 +51,35 @@ class Ship:
         self.arsenal = arsenal
 
     def _center_ship(self):
+
+        """
+        Centers the ship on the bottom of the screen
+
+        """
         self.rect.midbottom = self.boundaries.midbottom
         self.x = float(self.rect.x)
     
     def update(self):
 
         """
+        Updates the ship on the screen
+
+        Calls
+        -----
+
+        _update_ship_movement()
+            sets ship speed and keeps it within boundaries
+        update_arsenal()
+            updates ship arsenal and removes bullets offscreen
+        
+
+        """
+        self._update_ship_movement()
+        self.arsenal.update_arsenal()
+
+    def _update_ship_movement(self):
+
+        """ 
         Sets the speed of the ship and prevents it from exiting the edges of 
         the screen
 
@@ -64,12 +87,8 @@ class Ship:
         ----------
         ship_x_speed (int)
             references the settings file for the speed of the ship
-
+        
         """
-        self._update_ship_movement()
-        self.arsenal.update_arsenal()
-
-    def _update_ship_movement(self):
         ship_x_speed = self.settings.ship_speed
         if self.moving_right and self.rect.right < self.boundaries.right:
             self.x += ship_x_speed
@@ -92,9 +111,27 @@ class Ship:
         self.screen.blit(self.image, self.rect)
 
     def fire(self):
+
+        """
+        Fires bullets by calling fire_bullet from arsenal
+
+        Returns
+        -------
+
+            bool: fire_bullet is called and returns True or False
+        """
         return self.arsenal.fire_bullet()
     
     def check_collisions(self, other_group):
+
+        """
+        Checks the collision between ship and any other sprite
+
+        Returns
+        -------
+        
+            bool: If ship collides, then ship is returned to center
+        """
         if pygame.sprite.spritecollideany(self, other_group):
             self._center_ship()
             return True

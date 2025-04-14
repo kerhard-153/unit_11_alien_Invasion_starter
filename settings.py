@@ -28,6 +28,34 @@ class Settings:
             sets the ship height
         ship_speed (int)
             sets ship speed (x-coordinates)
+        bullet_file_pb (file)
+            file for bullet image
+        laser_sound (file)
+            file for sound played when bullet is fired
+        impact_sound (file)
+            file for sound played when a collision between laser and alien 
+            occurs
+        bullet_speed (int)
+            sets speed of the bullet (laser)
+        bullet_w (int)
+            width of bullet image
+        bullet_h (int)
+            height of bullet image
+        bullet_amount (int)
+            amount of bullets allowed on screen
+        alien_file (file)
+            image used for alien
+        alien_w (int)
+            width of alien image
+        alien_h (int)
+            height of alien image
+        fleet_speed (int)
+            speed on which fleet of aliens move
+        fleet_direction (int)
+            int that changes to negative to move in the opposite direction
+        fleet_drop_speed (int)
+            the y value used to make the alien fleet drop down when boundary is
+            hit
 
         """
         self.name: str = "Alien Invasion"
@@ -44,8 +72,8 @@ class Settings:
 
         # self.bullet_file = Path.cwd() / 'Assets' / 'images' / 'green_laser2.png'
         # self.bullet_file_pink = Path.cwd() / 'Assets' / 'images' / 'pink_laser.png'
-        self.bullet_file_pb = Path.cwd() / 'Assets' / 'images' / 'p_b_laser.png'
         # self.bullet_file_red = Path.cwd() / 'Assets' / 'images' / 'red_laser.png'
+        self.bullet_file_pb = Path.cwd() / 'Assets' / 'images' / 'p_b_laser.png'
         self.laser_sound = Path.cwd() / 'Assets' / 'sound' / 'laser7.mp3'
         self.impact_sound = Path.cwd() / 'Assets' / 'sound' / 'explosion.mp3'
         self.bullet_speed = 7

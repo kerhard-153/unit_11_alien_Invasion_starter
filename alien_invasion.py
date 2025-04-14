@@ -137,15 +137,30 @@ class AlienInvasion:
 
     def _check_collisions(self):
 
-        # check collisions for ship
+        """
+        Checks for collisions for the ship, aliens and the bottom of the screen,
+        and between the projectiles and aliens
+
+        Methods
+        -------
+
+        check_collisions()
+            checks for collisions between sprites
+        _check_game_status()
+            checks for remaining ships, resets, level, and contains sleep timer
+        check_fleet_bottom()
+            checks for bottom of the alien fleet
+        check_destroyed_status()
+            checks if alien fleet is destroyed
+         
+        """
+
         if self.ship.check_collisions(self.alien_fleet.fleet):
             self._check_game_status()
 
-         # checkcollisions for aliens and bottom of the screen
         if self.alien_fleet.check_fleet_bottom():
             self._check_game_status()
 
-        # check collisions of projectiles and aliens
         collisions = self.alien_fleet.check_collisions(self.ship.arsenal.arsenal)
         if collisions:
             self.impact_sound.play()
@@ -155,6 +170,13 @@ class AlienInvasion:
             self._reset_level()
 
     def _check_game_status(self):
+
+        """
+        Checks for status of elements in the game
+
+        Decrements ships_left if collision between aliens and the bottom of the
+        screen or aliens and the ship occurs, as well as resets the level
+        """
         if self.game_stats.ships_left > 0:
             self.game_stats.ships_left -= 1
             self._reset_level()
@@ -165,6 +187,10 @@ class AlienInvasion:
         print(self.game_stats.ships_left)
 
     def _reset_level(self):
+
+        """
+        Resets the level, empties the screen and recreates all elements
+        """
         self.ship.arsenal.arsenal.empty()
         self.alien_fleet.fleet.empty()
         self.alien_fleet.create_fleet()
