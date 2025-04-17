@@ -87,3 +87,12 @@ class Settings:
         self.fleet_speed = 2
         self.fleet_direction = 1
         self.fleet_drop_speed = 36
+
+        self.button_w = 200
+        self.button_h = 50
+        self.button_color = (167, 66, 245)
+
+        self.text_color = (255, 255, 255)
+        self.button_font_size = 48
+        self.HUD_font_sixe = 20
+        self.font_file = Path.cwd() / 'Assets' / 'Fonts' / 'Silkscreen' / 'PixelifySans-VariableFont_wght.ttf'
