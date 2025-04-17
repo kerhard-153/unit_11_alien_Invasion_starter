@@ -63,12 +63,12 @@ class Settings:
         self.screen_h = 800
         self.FPS = 60
         self.bg_file = Path.cwd() / 'Assets' / 'images' / 'space.png'
+        self.difficulty_scale = 1.1
+        self.alien_size_scale = 2
 
         self.ship_file = Path.cwd() / 'Assets' / 'images' / 'spaceship.png'
         self.ship_w = 64
         self.ship_h = 64
-        self.ship_speed = 5
-        self.starting_ship_count = 3
 
         # self.bullet_file = Path.cwd() / 'Assets' / 'images' / 'green_laser2.png'
         # self.bullet_file_pink = Path.cwd() / 'Assets' / 'images' / 'pink_laser.png'
@@ -76,17 +76,9 @@ class Settings:
         self.bullet_file_pb = Path.cwd() / 'Assets' / 'images' / 'p_b_laser.png'
         self.laser_sound = Path.cwd() / 'Assets' / 'sound' / 'laser7.mp3'
         self.impact_sound = Path.cwd() / 'Assets' / 'sound' / 'explosion.mp3'
-        self.bullet_speed = 7
-        self.bullet_w = 24
-        self.bullet_h = 24
-        self.bullet_amount = 5
 
         self.alien_file = Path.cwd() / 'Assets' / 'images' / 'alien.png'
-        self.alien_w = 56
-        self.alien_h = 56
-        self.fleet_speed = 2
         self.fleet_direction = 1
-        self.fleet_drop_speed = 36
 
         self.button_w = 200
         self.button_h = 50
@@ -96,3 +88,26 @@ class Settings:
         self.button_font_size = 48
         self.HUD_font_sixe = 20
         self.font_file = Path.cwd() / 'Assets' / 'Fonts' / 'Silkscreen' / 'PixelifySans-VariableFont_wght.ttf'
+
+    def initialize_dynamic_settings(self):
+
+        self.ship_speed = 5
+        self.starting_ship_count = 3
+        
+        self.bullet_w = 24
+        self.bullet_h = 24
+        self.bullet_speed = 7
+        self.bullet_amount = 5
+
+        self.alien_w = 56
+        self.alien_h = 56
+
+        self.fleet_speed = 2
+        self.fleet_drop_speed = 36
+
+    def increase_difficulty(self):
+        self.ship_speed *= self.difficulty_scale
+        self.bullet_speed *= self.difficulty_scale
+        self.fleet_speed *= self.difficulty_scale
+        self.alien_w -= self.alien_size_scale
+        self.alien_h -= self.alien_size_scale
