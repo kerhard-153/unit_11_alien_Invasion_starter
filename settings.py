@@ -65,6 +65,7 @@ class Settings:
         self.bg_file = Path.cwd() / 'Assets' / 'images' / 'space.png'
         self.difficulty_scale = 1.1
         self.alien_size_scale = 2
+        self.scores_file = Path.cwd() / 'Assets' / 'file' / 'scores.json'
 
         self.ship_file = Path.cwd() / 'Assets' / 'images' / 'spaceship.png'
         self.ship_w = 64
