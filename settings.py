@@ -77,6 +77,7 @@ class Settings:
         self.bullet_file_pb = Path.cwd() / 'Assets' / 'images' / 'p_b_laser.png'
         self.laser_sound = Path.cwd() / 'Assets' / 'sound' / 'laser7.mp3'
         self.impact_sound = Path.cwd() / 'Assets' / 'sound' / 'explosion.mp3'
+        self.title_screen_music = Path.cwd() / 'Assets' / 'sound' / 'Battle in the Stars.mp3'
 
         self.alien_file = Path.cwd() / 'Assets' / 'images' / 'alien.png'
         self.fleet_direction = 1
@@ -87,7 +88,7 @@ class Settings:
 
         self.text_color = (255, 255, 255)
         self.button_font_size = 48
-        self.HUD_font_sixe = 20
+        self.HUD_font_size = 20
         self.font_file = Path.cwd() / 'Assets' / 'Fonts' / 'Silkscreen' / 'PixelifySans-VariableFont_wght.ttf'
 
     def initialize_dynamic_settings(self):

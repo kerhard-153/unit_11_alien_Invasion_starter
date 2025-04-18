@@ -107,12 +107,19 @@ class AlienInvasion:
         self.laser_sound.set_volume(0.5)
         self.impact_sound = pygame.mixer.Sound(self.settings.impact_sound)
         self.impact_sound.set_volume(0.2)
+        self.play_background_music()
 
         self.ship = Ship(self, ShipArsenal(self))
         self.alien_fleet = AlienFleet(self)
         self.alien_fleet.create_fleet()
         self.play_button = Button(self, 'START')
         self.game_active = False
+
+    def play_background_music(self):
+        self.title_screen_music = pygame.mixer.music.load(
+            self.settings.title_screen_music)
+        pygame.mixer.music.play(-1)
+        pygame.mixer.music.set_volume(0.5)
 
     def run_game(self): 
 
@@ -177,6 +184,7 @@ class AlienInvasion:
             self._reset_level()
             self.settings.increase_difficulty()
             self.game_stats.update_level()
+            self.HUD.update_level()
 
 
     def _check_game_status(self):
@@ -272,6 +280,7 @@ class AlienInvasion:
         mouse_pos = pygame.mouse.get_pos()
         if self.play_button.check_clicked(mouse_pos):
             self.restart_game()
+            pygame.mixer.music.set_volume(0.3)
 
     def _check_keydown_events(self, event):
 
