@@ -34,6 +34,8 @@ class AlienInvasion:
 
     __init__(self)
         initializes elements of the game
+    play_background_music(self)
+        plays the background music of the game
     run_game(self)
         the game loop
     _update_screen(self)
@@ -118,6 +120,17 @@ class AlienInvasion:
         self.game_active = False
 
     def play_background_music(self):
+
+        """
+        Plays background music
+
+        Attributes
+        ----------
+
+        title_screen_music
+            loads music file from settings
+
+        """
         self.title_screen_music = pygame.mixer.music.load(
             self.settings.title_screen_music)
         pygame.mixer.music.play(-1)
@@ -153,7 +166,7 @@ class AlienInvasion:
 
         """
         Checks for collisions for the ship, aliens and the bottom of the screen,
-        and between the projectiles and aliens
+        and between the projectiles and aliens. 
 
         Methods
         -------
@@ -166,6 +179,18 @@ class AlienInvasion:
             checks for bottom of the alien fleet
         check_destroyed_status()
             checks if alien fleet is destroyed
+        update (Args: collisions)
+            updates game stats based on collisions
+        update_scores()
+            updates the scores on the HUD
+        _reset_level()
+            resets level when fleet is destroyed
+        increase_difficulty()
+            increases difficulty when alien fleet is destroyed
+        update_level()
+            game_stats: increments level by 1
+            HUD: updates level display
+        
          
         """
 
@@ -207,7 +232,6 @@ class AlienInvasion:
         else:
             self.game_active = False
         
-        print(self.game_stats.ships_left)
 
     def _reset_level(self):
 
@@ -220,6 +244,11 @@ class AlienInvasion:
 
 
     def restart_game(self):
+
+        """
+        Restarts all elements of the game to where they were, preserving only 
+        the high score
+        """
 
         self.settings.initialize_dynamic_settings()
         self.game_stats.reset_stats()
@@ -267,6 +296,8 @@ class AlienInvasion:
             checks if player presses a key
         _check_keyup_events(Arg: event)
             checks if player releases a key
+        _check_button_clicked()
+            checks if player clicked the "start" button
 
         """
         for event in pygame.event.get():
@@ -283,6 +314,17 @@ class AlienInvasion:
                 self._check_button_clicked()
 
     def _check_button_clicked(self):
+
+        """
+        Checks if player clicks the "start" button, prepares screen for the 
+        start of the game
+
+        Attributes
+        ----------
+
+        mouse_pos
+            gets mouse position of the player
+        """
         mouse_pos = pygame.mouse.get_pos()
         if self.play_button.check_clicked(mouse_pos):
             self.restart_game()

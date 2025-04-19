@@ -20,14 +20,16 @@ class Settings:
             frames per second, used by Clock()
         bg_file (file)
             accesses background image file
+        difficulty_scale (int)
+            rate of increase in difficulty
+        scores_file (json file)
+            file for saving score information between games
         ship_file (file)
             accesses ship image file
         ship_w (int)
             sets the ship width
         ship_h (int)
             sets the ship height
-        ship_speed (int)
-            sets ship speed (x-coordinates)
         bullet_file_pb (file)
             file for bullet image
         laser_sound (file)
@@ -35,27 +37,29 @@ class Settings:
         impact_sound (file)
             file for sound played when a collision between laser and alien 
             occurs
-        bullet_speed (int)
-            sets speed of the bullet (laser)
-        bullet_w (int)
-            width of bullet image
-        bullet_h (int)
-            height of bullet image
-        bullet_amount (int)
-            amount of bullets allowed on screen
+        lose_ship_sound (file)
+            file for sound played when a ship is lost
+        title_screen_music (file)
+            file for background music
         alien_file (file)
             image used for alien
-        alien_w (int)
-            width of alien image
-        alien_h (int)
-            height of alien image
-        fleet_speed (int)
-            speed on which fleet of aliens move
         fleet_direction (int)
             int that changes to negative to move in the opposite direction
-        fleet_drop_speed (int)
-            the y value used to make the alien fleet drop down when boundary is
-            hit
+        button_w (int)
+            width of the start button
+        button_h (int)
+            height of the start button
+        button_color (int, rgb scale)
+            color of the start button
+        text_color (int, rgb scale)
+            color of the text in HUD
+        button_font_size (int)
+            font size of the text in the start button
+        HUD_font_size (int)
+            font size for elements od the HUD
+        font_file (file)
+            file for the font used
+
 
         """
         self.name: str = "Alien Invasion"
@@ -64,7 +68,6 @@ class Settings:
         self.FPS = 60
         self.bg_file = Path.cwd() / 'Assets' / 'images' / 'space.png'
         self.difficulty_scale = 1.05
-        self.alien_size_scale = 1
         self.scores_file = Path.cwd() / 'Assets' / 'file' / 'scores.json'
 
         self.ship_file = Path.cwd() / 'Assets' / 'images' / 'spaceship.png'
@@ -94,6 +97,38 @@ class Settings:
 
     def initialize_dynamic_settings(self):
 
+        """
+        Initializes settings that can be used dynamically
+
+        Attributes
+        ----------
+
+        ship_speed (int)
+            sets ship speed (x-coordinates)
+        starting_ship_count (int)
+            sets the amount of "lives" the player has
+        bullet_speed (int)
+            sets speed of the bullet (laser)
+        bullet_w (int)
+            width of bullet image
+        bullet_h (int)
+            height of bullet image
+        bullet_amount (int)
+            amount of bullets allowed on screen
+        alien_w (int)
+            width of alien image
+        alien_h (int)
+            height of alien image
+        fleet_speed (int)
+            speed on which fleet of aliens move
+        fleet_drop_speed (int)
+            the y value used to make the alien fleet drop down when boundary is
+            hit
+        alien_points (int)
+            sets amount of points earned when an alien is destroyed
+
+        """
+
         self.ship_speed = 5
         self.starting_ship_count = 3
         
@@ -111,8 +146,10 @@ class Settings:
         self.alien_points = 50
 
     def increase_difficulty(self):
+
+        """
+        Increases difficulty based on the difficulty scale
+        """
         self.ship_speed *= self.difficulty_scale
         self.bullet_speed *= self.difficulty_scale
         self.fleet_speed *= self.difficulty_scale
-        self.alien_w -= self.alien_size_scale
-        self.alien_h -= self.alien_size_scale
