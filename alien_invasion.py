@@ -106,7 +106,9 @@ class AlienInvasion:
         self.laser_sound = pygame.mixer.Sound(self.settings.laser_sound)
         self.laser_sound.set_volume(0.5)
         self.impact_sound = pygame.mixer.Sound(self.settings.impact_sound)
-        self.impact_sound.set_volume(0.2)
+        self.impact_sound.set_volume(0.3)
+        self.lose_ship_sound = pygame.mixer.Sound(self.settings.lose_ship_sound)
+        self.lose_ship_sound.set_volume(0.5)
         self.play_background_music()
 
         self.ship = Ship(self, ShipArsenal(self))
@@ -196,9 +198,12 @@ class AlienInvasion:
         screen or aliens and the ship occurs, as well as resets the level
         """
         if self.game_stats.ships_left > 0:
+            pygame.mixer.music.pause()
+            self.lose_ship_sound.play()
             self.game_stats.ships_left -= 1
             self._reset_level()
             sleep(1.0)
+            pygame.mixer.music.unpause()
         else:
             self.game_active = False
         
@@ -212,6 +217,7 @@ class AlienInvasion:
         self.ship.arsenal.arsenal.empty()
         self.alien_fleet.fleet.empty()
         self.alien_fleet.create_fleet()
+
 
     def restart_game(self):
 

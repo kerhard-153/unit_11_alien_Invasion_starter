@@ -63,8 +63,8 @@ class Settings:
         self.screen_h = 800
         self.FPS = 60
         self.bg_file = Path.cwd() / 'Assets' / 'images' / 'space.png'
-        self.difficulty_scale = 1.1
-        self.alien_size_scale = 2
+        self.difficulty_scale = 1.05
+        self.alien_size_scale = 1
         self.scores_file = Path.cwd() / 'Assets' / 'file' / 'scores.json'
 
         self.ship_file = Path.cwd() / 'Assets' / 'images' / 'spaceship.png'
@@ -77,6 +77,7 @@ class Settings:
         self.bullet_file_pb = Path.cwd() / 'Assets' / 'images' / 'p_b_laser.png'
         self.laser_sound = Path.cwd() / 'Assets' / 'sound' / 'laser7.mp3'
         self.impact_sound = Path.cwd() / 'Assets' / 'sound' / 'explosion.mp3'
+        self.lose_ship_sound = Path.cwd() / 'Assets' / 'sound' / 'lose_ship.mp3'
         self.title_screen_music = Path.cwd() / 'Assets' / 'sound' / 'Battle in the Stars.mp3'
 
         self.alien_file = Path.cwd() / 'Assets' / 'images' / 'alien.png'
