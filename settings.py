@@ -34,13 +34,17 @@ class Settings:
             file for bullet image
         laser_sound (file)
             file for sound played when bullet is fired
+            made using https://sfxr.me/
         impact_sound (file)
             file for sound played when a collision between laser and alien 
             occurs
+            made using https://sfxr.me/
         lose_ship_sound (file)
             file for sound played when a ship is lost
+            made using https://sfxr.me/
         title_screen_music (file)
             file for background music
+            found at https://opengameart.org/art-search?keys=battle+in+the+stars
         alien_file (file)
             image used for alien
         fleet_direction (int)
